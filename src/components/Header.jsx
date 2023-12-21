@@ -3,7 +3,7 @@ import githubLogo from '../assets/github.svg'
 export function Header () {
   return (
         <header>
-            <div className='flex justify-between  w-full px-2'>
+            <div className='flex justify-between px-2'>
             <span className='flex flex-grow basis-0 text-3xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500'>The Weather App</span>
 
             <a
