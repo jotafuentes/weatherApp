@@ -8,7 +8,7 @@ export function CurrentWeather ({ dataWeather }) {
   const timeSet = new Date(timestampSet * 1000).toLocaleString('es-ES', timeOptions)
 
   return (
-        <div className='relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10 col-span-7'>
+        <div className='relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10 col-span-7 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
 
         <p className="text-center text-white text-2xl">{dataWeather.weather[0].description}</p>
         <div className="flex justify-around items-center px-2">

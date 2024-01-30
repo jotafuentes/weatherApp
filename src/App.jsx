@@ -32,7 +32,7 @@ function App () {
   }
 
   return (
-    <div className='min-h-screen w-auto pt-8  h-screen bg-gradient-to-tl from-gray-900 from-5% to-sky-800 to-95%'>
+    <div className='min-h-screen w-auto pt-8  bg-[#000532]'>
       <header>
         <Search
           onSearchChange={handleOnSearchChange}
@@ -41,7 +41,7 @@ function App () {
 
       {weather && (
 
-      <section className='  w-full max-w-7xl grid grid-col-10 auto-rows-[20rem] gap-4 mx-auto p-20'>
+      <section className='  w-full max-w-7xl grid grid-col-10 auto-rows-[24rem] gap-4 mx-auto p-20 '>
 
         <TimeAndLocation dataWeather={weather} />
         <CurrentWeather dataWeather={weather}/>
