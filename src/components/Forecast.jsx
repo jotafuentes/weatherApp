@@ -3,6 +3,8 @@ export function Forecast ({ dataForecast }) {
     return <div>No Hay datos de forecast</div>
   }
   return (
+        <div className="relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10 col-span-10">
+
         <div className="flex justify-between items-center">
 
             {dataForecast.list.slice(0, 7).map((item, idx) => (
@@ -14,6 +16,7 @@ export function Forecast ({ dataForecast }) {
               </div>
             )
             )}
+        </div>
         </div>
   )
 }

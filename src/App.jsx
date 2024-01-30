@@ -1,4 +1,4 @@
-import { Header } from './components/Header'
+import { Search } from './components/Search'
 import { TimeAndLocation } from './components/TimeAndLocation'
 import { CurrentWeather } from './components/CurrentWeather'
 import { useState } from 'react'
@@ -29,12 +29,28 @@ function App () {
 
     fetchDataAndSetState(lat, lon, setWeather, WEATHER_ENDPPOINT)
     fetchDataAndSetState(lat, lon, setForecast, FORECAST_ENDPOINT)
-    console.log(forecast)
   }
 
   return (
-    <div className='w-auto pt-8  h-screen bg-gradient-to-r from-blue-950 to-blue-700'>
-      <main className='container mx-auto w-11/12  py-2 border-2 rounded-md '>
+    <div className='min-h-screen w-auto pt-8  h-screen bg-gradient-to-tl from-gray-900 from-5% to-sky-800 to-95%'>
+      <header>
+        <Search
+          onSearchChange={handleOnSearchChange}
+          onLocation={handleClickLocation}/>
+      </header>
+
+      {weather && (
+
+      <section className='  w-full max-w-7xl grid grid-col-10 auto-rows-[20rem] gap-4 mx-auto p-20'>
+
+        <TimeAndLocation dataWeather={weather} />
+        <CurrentWeather dataWeather={weather}/>
+        <Forecast dataForecast={forecast}/>
+
+      </section>
+      )}
+
+      {/* <main className='container mx-auto w-11/12  py-2 border-2 rounded-md '>
       <Header onSearchChange={handleOnSearchChange} onLocation={handleClickLocation}/>
       {weather && (
         <div>
@@ -44,7 +60,7 @@ function App () {
           <Forecast dataForecast={forecast}/>
         </div>
       )}
-      </main>
+      </main> */}
     </div>
 
   )

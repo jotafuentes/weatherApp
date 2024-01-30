@@ -3,7 +3,7 @@ import { AsyncPaginate } from 'react-select-async-paginate'
 import githubLogo from '../assets/github.svg'
 import { geoCitiesOptions, GEOCITIES_ENDPOINT } from '../services/geoDBCities'
 
-export function Header ({ onSearchChange, onLocation }) {
+export function Search ({ onSearchChange, onLocation }) {
   const [search, setSearch] = useState('')
   const [location, setLocation] = useState()
 
