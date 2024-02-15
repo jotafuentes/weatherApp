@@ -1,22 +1,51 @@
+import { Line } from 'react-chartjs-2'
+import { Chart } from 'chart.js/auto'
+
 export function Forecast ({ dataForecast }) {
-  if (!dataForecast) {
-    return <div>No Hay datos de forecast</div>
-  }
+  const labels = dataForecast?.list.slice(0, 15).map((item, idx) => {
+    return [formatDateTime(item.dt)]
+  })
+
+  const dataMax = dataForecast?.list.slice(0, 15).map((item, idx) => {
+    return Math.round(item.main.temp_max)
+  })
+  const dataMin = dataForecast?.list.slice(0, 15).map((item, idx) => {
+    return Math.round(item.main.temp_min)
+  })
+
   return (
-        <div className="relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10 col-span-10 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100%">
+        <div className='flex flex-col justify-evenly items-center relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  lg:col-span-3 md:col-span-3 sm:col-span-3 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
+            <Line
+                data={{
+                  labels,
+                  datasets: [
+                    {
+                      label: 'Max Temperature',
+                      data: dataMax,
+                      fill: true,
+                      borderColor: 'red',
+                      tension: 0.1,
+                      pointStyle: 'circle',
+                      pointRadius: 5,
+                      pointHoverRadius: 10,
+                      pointBackgroundColor: 'red'
+                    },
+                    {
+                      label: 'Min Temperature',
+                      data: dataMin,
+                      fill: true,
+                      borderColor: 'blue',
+                      tension: 0.1,
+                      pointStyle: 'circle',
+                      pointRadius: 5,
+                      pointHoverRadius: 10,
+                      pointBackgroundColor: 'blue'
+                    }
+                  ]
 
-        <div className="flex justify-between items-center">
+                }}
 
-            {dataForecast.list.slice(0, 7).map((item, idx) => (
-
-              <div key={idx} className="flex flex-col gap-2 ">
-                <h3 className="text-white">{formatDateTime(item.dt)}</h3>
-                <img className="h-12 w-12" src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt="icon-weather" />
-                <span className="text-white">{Math.round(item.main.temp)} ºC</span>
-              </div>
-            )
-            )}
-        </div>
+            />
         </div>
   )
 }

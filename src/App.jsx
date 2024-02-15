@@ -29,11 +29,12 @@ function App () {
 
     fetchDataAndSetState(lat, lon, setWeather, WEATHER_ENDPPOINT)
     fetchDataAndSetState(lat, lon, setForecast, FORECAST_ENDPOINT)
+    console.log(forecast)
   }
 
   return (
-    <div className='min-h-screen w-auto pt-8  bg-[#000532]'>
-      <header>
+    <div className='min-h-screen  pt-8  bg-[#000532]'>
+      <header className='max-w-screen-xl mx-auto'>
         <Search
           onSearchChange={handleOnSearchChange}
           onLocation={handleClickLocation}/>
@@ -41,10 +42,10 @@ function App () {
 
       {weather && (
 
-      <section className='  w-full max-w-7xl grid grid-col-10 auto-rows-[24rem] gap-4 mx-auto p-20 '>
+      <section className='  w-full max-w-7xl grid grid-col-3 auto-rows-[24rem] gap-4 mx-auto p-20 '>
 
         <TimeAndLocation dataWeather={weather} />
-        <CurrentWeather dataWeather={weather}/>
+        <CurrentWeather dataWeather={weather} dataForecast={forecast}/>
         <Forecast dataForecast={forecast}/>
 
       </section>

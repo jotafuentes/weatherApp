@@ -34,9 +34,8 @@ export function Search ({ onSearchChange, onLocation }) {
     const geoLocation = (locationData) => {
       const geoLat = locationData.coords.latitude
       const geoLon = locationData.coords.longitude
-      console.log(geoLat, geoLon)
+
       setLocation([geoLat, geoLon])
-      console.log(location)
 
       // Llamar a onLocation con las coordenadas obtenidas
       onLocation({ lat: geoLat, lon: geoLon })
@@ -48,8 +47,8 @@ export function Search ({ onSearchChange, onLocation }) {
   }
 
   return (
-        <header>
-            <div className='flex justify-between px-2'>
+        <div>
+            <div className='  flex justify-between px-2'>
             <span className='flex flex-grow basis-0 text-3xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500'>The Weather App</span>
 
             <a
@@ -78,6 +77,6 @@ export function Search ({ onSearchChange, onLocation }) {
 
             </div>
 
-        </header>
+        </div>
   )
 }
