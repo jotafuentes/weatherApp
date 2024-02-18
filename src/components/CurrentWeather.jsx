@@ -12,9 +12,9 @@ export function CurrentWeather ({ dataWeather, dataForecast }) {
   }
 
   return (
-        <div className='relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10 md:col-span-2 lg:col-span-2 sm:col-span-10 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
+        <div className='flex flex-col items-center relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  lg:col-span-2 md:col-span-3 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
 
-        <div className="flex flex-row justify-evenly">
+        <div className="flex md:flex-row sm:flex-col md:justify-evenly sm:justify-center sm:items-center sm:pt-4">
             <section className="flex justify-around items-center px-2">
         {/* }<span className="icon-[solar--cloud-rain-bold-duotone] text-6xl text-white"></span> */}
 
@@ -54,10 +54,10 @@ export function CurrentWeather ({ dataWeather, dataForecast }) {
             </section>
         </div>
 
-            <section className=" flex justify-center gap-24 mt-12 text-white">
+            <section className=" md:max-w-3xl sm:max-w-[15rem] sm:items-center  flex md:flex-row sm:flex-col justify-center gap-24 m-12 text-white">
             {dataForecast.list.slice(0, 3).map((item, idx) => (
 
-                <div key={idx} className="flex flex-col items-center gap-6 p-2 bg-indigo-950 border border-indigo-100 shadow-lg rounded-lg">
+                <div key={idx} className="flex flex-col items-center md:gap-2 p-2 bg-indigo-950 border border-indigo-100 shadow-lg rounded-lg">
                     <h2 className=" text-xl">{formatDateTime(item.dt)}</h2>
                     <img className="h-12 w-12" src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt="icon-weather" />
                     <span className="">{Math.round(item.main.temp)} ºC</span>

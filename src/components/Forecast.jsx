@@ -1,26 +1,44 @@
+import { useEffect, useState } from 'react'
 import { Line } from 'react-chartjs-2'
 import { Chart } from 'chart.js/auto'
 
 export function Forecast ({ dataForecast }) {
-  const labels = dataForecast?.list.slice(0, 15).map((item, idx) => {
+  const [sample, setSample] = useState(15)
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSample(10)
+      } if (window.innerWidth < 640) {
+        setSample(7)
+      } else {
+        setSample(15)
+      }
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const labels = dataForecast?.list.slice(0, sample).map((item, idx) => {
     return [formatDateTime(item.dt)]
   })
 
-  const dataMax = dataForecast?.list.slice(0, 15).map((item, idx) => {
+  const dataMax = dataForecast?.list.slice(0, sample).map((item, idx) => {
     return Math.round(item.main.temp_max)
   })
-  const dataMin = dataForecast?.list.slice(0, 15).map((item, idx) => {
+  const dataMin = dataForecast?.list.slice(0, sample).map((item, idx) => {
     return Math.round(item.main.temp_min)
   })
 
   return (
-        <div className='flex flex-col justify-evenly items-center relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  lg:col-span-3 md:col-span-3 sm:col-span-3 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
+        <div className='flex flex-col justify-evenly items-center relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  lg:col-span-3 md:col-span-3  bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
             <Line
                 data={{
                   labels,
                   datasets: [
                     {
-                      label: 'Max Temperature',
+                      label: 'Max Temperature ºC',
                       data: dataMax,
                       fill: true,
                       borderColor: 'red',
@@ -31,7 +49,7 @@ export function Forecast ({ dataForecast }) {
                       pointBackgroundColor: 'red'
                     },
                     {
-                      label: 'Min Temperature',
+                      label: 'Min Temperature ºC',
                       data: dataMin,
                       fill: true,
                       borderColor: 'blue',

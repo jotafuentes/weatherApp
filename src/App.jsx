@@ -15,26 +15,27 @@ function App () {
   const fetchDataAndSetState = (lat, lon, setData, endpoint) => {
     dataWeather(lat, lon, endpoint)
       .then(data => setData(data))
+      .catch(error => console.error(error))
+  }
+
+  const fetchDataAndSetStateWithCoords = (lat, lon) => {
+    fetchDataAndSetState(lat, lon, setWeather, WEATHER_ENDPPOINT)
+    fetchDataAndSetState(lat, lon, setForecast, FORECAST_ENDPOINT)
   }
 
   const handleClickLocation = (locationData) => {
     const { lat, lon } = locationData
-
-    fetchDataAndSetState(lat, lon, setWeather, WEATHER_ENDPPOINT)
-    fetchDataAndSetState(lat, lon, setForecast, FORECAST_ENDPOINT)
+    fetchDataAndSetStateWithCoords(lat, lon)
   }
 
   const handleOnSearchChange = (searchData) => {
     const [lat, lon] = searchData.value.split(' ')
-
-    fetchDataAndSetState(lat, lon, setWeather, WEATHER_ENDPPOINT)
-    fetchDataAndSetState(lat, lon, setForecast, FORECAST_ENDPOINT)
-    console.log(forecast)
+    fetchDataAndSetStateWithCoords(lat, lon)
   }
 
   return (
-    <div className='min-h-screen  pt-8  bg-[#000532]'>
-      <header className='max-w-screen-xl mx-auto'>
+    <div className='min-h-screen  w-auto pt-8  bg-[#000532]'>
+      <header className='mx-auto'>
         <Search
           onSearchChange={handleOnSearchChange}
           onLocation={handleClickLocation}/>
@@ -42,7 +43,7 @@ function App () {
 
       {weather && (
 
-      <section className='  w-full max-w-7xl grid grid-col-3 auto-rows-[24rem] gap-4 mx-auto p-20 '>
+      <section className='max-w-7xl  grid grid-col-3 md:auto-rows-[24rem] gap-4 mx-auto p-20 '>
 
         <TimeAndLocation dataWeather={weather} />
         <CurrentWeather dataWeather={weather} dataForecast={forecast}/>
