@@ -12,7 +12,7 @@ export function CurrentWeather ({ dataWeather, dataForecast }) {
   }
 
   return (
-        <div className='flex flex-col items-center relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  lg:col-span-2 md:col-span-3 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
+        <div className='flex flex-col items-center relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10 sm:col-span-7 col-span-10 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
 
         <div className="flex md:flex-row sm:flex-col md:justify-evenly sm:justify-center sm:items-center sm:pt-4">
             <section className="flex justify-around items-center px-2">
@@ -54,7 +54,7 @@ export function CurrentWeather ({ dataWeather, dataForecast }) {
             </section>
         </div>
 
-            <section className=" md:max-w-3xl sm:max-w-[15rem] sm:items-center  flex md:flex-row sm:flex-col justify-center gap-24 m-12 text-white">
+            <section className="flex flex-col sm:flex-row justify-center gap-24 md:gap-12 m-12 md:m-8 text-white">
             {dataForecast.list.slice(0, 3).map((item, idx) => (
 
                 <div key={idx} className="flex flex-col items-center md:gap-2 p-2 bg-indigo-950 border border-indigo-100 shadow-lg rounded-lg">

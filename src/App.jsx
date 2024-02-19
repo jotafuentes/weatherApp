@@ -43,7 +43,7 @@ function App () {
 
       {weather && (
 
-      <section className='max-w-7xl  grid grid-col-3 md:auto-rows-[24rem] gap-4 mx-auto p-20 '>
+      <section className='max-w-7xl  grid grid-cols-10 md:auto-rows-[24rem] gap-4 mx-auto p-20 '>
 
         <TimeAndLocation dataWeather={weather} />
         <CurrentWeather dataWeather={weather} dataForecast={forecast}/>
