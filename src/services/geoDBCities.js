@@ -1,4 +1,4 @@
-export const GEOCITIES_ENDPOINT = 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities?minPopulation=50000'
+export const GEOCITIES_ENDPOINT = 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities?minPopulation=50000&limit=5'
 
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY
 export const geoCitiesOptions = {
