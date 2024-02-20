@@ -28,7 +28,7 @@ export function Search ({ onSearchChange, onLocation }) {
           .catch((error) => {
             reject(error)
           })
-      }, 1000)
+      }, 2000)
     })
   }
 
@@ -70,7 +70,7 @@ export function Search ({ onSearchChange, onLocation }) {
                 onChange={handleOnChange}
                 className='p-1 px-2 rounded-xl w-2/5'
                 placeholder='Search for city'
-                debounceTimeout={600}
+                debounceTimeout={1000}
                 value={search}
                 loadOptions={loadOptions}
                 />
