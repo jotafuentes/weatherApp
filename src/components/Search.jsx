@@ -8,21 +8,28 @@ export function Search ({ onSearchChange, onLocation }) {
   const [location, setLocation] = useState()
 
   const loadOptions = (inputValue) => {
-    return fetch(
-      `${GEOCITIES_ENDPOINT}&namePrefix=${inputValue}`,
-      geoCitiesOptions
-    )
-      .then(response => response.json())
-      .then((response) => {
-        return {
-          options: response.data.map((city) => {
-            return {
-              value: `${city.latitude} ${city.longitude}`,
-              label: `${city.name}, ${city.countryCode}`
-            }
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        fetch(
+          `${GEOCITIES_ENDPOINT}&namePrefix=${inputValue}`,
+          geoCitiesOptions
+        )
+          .then(response => response.json())
+          .then((response) => {
+            resolve({
+              options: response.data.map((city) => {
+                return {
+                  value: `${city.latitude} ${city.longitude}`,
+                  label: `${city.name}, ${city.countryCode}`
+                }
+              })
+            })
           })
-        }
-      })
+          .catch((error) => {
+            reject(error)
+          })
+      }, 1000)
+    })
   }
 
   const handleOnChange = (searchData) => {
