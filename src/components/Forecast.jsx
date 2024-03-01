@@ -34,8 +34,10 @@ export function Forecast ({ dataForecast }) {
 
   return (
         <div className='min-h-[20rem]  relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  col-span-10  bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
+          <div className='flex justify-center items-center h-full '>
+
             <Line
-                className='m-auto'
+
                 data={{
                   labels,
                   datasets: [
@@ -66,6 +68,7 @@ export function Forecast ({ dataForecast }) {
                 }}
 
             />
+          </div>
         </div>
   )
 }
