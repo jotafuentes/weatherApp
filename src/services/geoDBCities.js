@@ -11,14 +11,6 @@ export const geoCitiesOptions = {
 }
 
 export const fetchCities = (inputValue) => {
-  return {
-    options: [
-      {
-        value: { lat: 0, long: 9 },
-        label: 'chile'
-      }
-    ]
-  }
   return fetch(
     `${GEOCITIES_ENDPOINT}&namePrefix=${inputValue}`,
     geoCitiesOptions

@@ -1,21 +1,21 @@
-import { AsyncPaginate } from "react-select-async-paginate";
-import githubLogo from "../assets/github.svg";
-import { fetchCities } from "../services/geoDBCities";
+import { AsyncPaginate } from 'react-select-async-paginate'
+import githubLogo from '../assets/github.svg'
+import { fetchCities } from '../services/geoDBCities'
 
-export function Search({ onSearchChange }) {
+export function Search ({ onSearchChange }) {
   const handleOnChange = (searchData) => {
-    onSearchChange(searchData.value);
-  };
+    onSearchChange(searchData.value)
+  }
 
   const handleClick = () => {
     navigator.geolocation.getCurrentPosition((locationData) => {
-      const geoLat = locationData.coords.latitude;
-      const geoLon = locationData.coords.longitude;
+      const geoLat = locationData.coords.latitude
+      const geoLon = locationData.coords.longitude
 
       // Llamar a onLocation con las coordenadas obtenidas
-      onSearchChange({ lat: geoLat, lon: geoLon });
-    });
-  };
+      onSearchChange({ lat: geoLat, lon: geoLon })
+    })
+  }
 
   return (
     <div>
@@ -61,5 +61,5 @@ export function Search({ onSearchChange }) {
         </svg>
       </div>
     </div>
-  );
+  )
 }

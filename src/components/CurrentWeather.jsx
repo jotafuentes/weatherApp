@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
 
-export function CurrentWeather({ dataWeather, dataForecast }) {
-  const timestampRise = dataWeather.sys.sunrise;
-  const timestampSet = dataWeather.sys.sunset;
-  const timeOptions = { hour: "numeric", minute: "numeric" };
+export function CurrentWeather ({ dataWeather, dataForecast }) {
+  const timestampRise = dataWeather.sys.sunrise
+  const timestampSet = dataWeather.sys.sunset
+  const timeOptions = { hour: 'numeric', minute: 'numeric' }
   const timeRise = new Date(timestampRise * 1000).toLocaleString(
-    "es-ES",
-    timeOptions,
-  );
+    'es-ES',
+    timeOptions
+  )
   const timeSet = new Date(timestampSet * 1000).toLocaleString(
-    "es-ES",
-    timeOptions,
-  );
+    'es-ES',
+    timeOptions
+  )
 
   if (!dataForecast) {
-    return <div>No Hay datos de forecast</div>;
+    return <div>No Hay datos de forecast</div>
   }
 
   return (
@@ -75,19 +75,19 @@ export function CurrentWeather({ dataWeather, dataForecast }) {
         ))}
       </section>
     </div>
-  );
+  )
 }
 
 const formatDateTime = (timestamp) => {
-  const date = new Date(timestamp * 1000);
+  const date = new Date(timestamp * 1000)
   const options = {
-    weekday: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  };
-  const formattedDateTime = new Intl.DateTimeFormat("es-ES", options).format(
-    date,
-  );
-  return formattedDateTime;
-};
+    weekday: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+  }
+  const formattedDateTime = new Intl.DateTimeFormat('es-ES', options).format(
+    date
+  )
+  return formattedDateTime
+}
