@@ -1,89 +1,65 @@
-import { useState } from 'react'
-import { AsyncPaginate } from 'react-select-async-paginate'
-import githubLogo from '../assets/github.svg'
-import { geoCitiesOptions, GEOCITIES_ENDPOINT } from '../services/geoDBCities'
+import { AsyncPaginate } from "react-select-async-paginate";
+import githubLogo from "../assets/github.svg";
+import { fetchCities } from "../services/geoDBCities";
 
-export function Search ({ onSearchChange, onLocation }) {
-  const [search, setSearch] = useState('')
-  const [location, setLocation] = useState()
-
-  const loadOptions = (inputValue) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        fetch(
-          `${GEOCITIES_ENDPOINT}&namePrefix=${inputValue}`,
-          geoCitiesOptions
-        )
-          .then(response => response.json())
-          .then((response) => {
-            resolve({
-              options: response.data.map((city) => {
-                return {
-                  value: `${city.latitude} ${city.longitude}`,
-                  label: `${city.name}, ${city.countryCode}`
-                }
-              })
-            })
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      }, 1000)
-    })
-  }
-
+export function Search({ onSearchChange }) {
   const handleOnChange = (searchData) => {
-    setSearch(searchData)
-    onSearchChange(searchData)
-  }
+    onSearchChange(searchData.value);
+  };
 
-  const handleClick = (locationSearch) => {
-    const geoLocation = (locationData) => {
-      const geoLat = locationData.coords.latitude
-      const geoLon = locationData.coords.longitude
-
-      setLocation([geoLat, geoLon])
+  const handleClick = () => {
+    navigator.geolocation.getCurrentPosition((locationData) => {
+      const geoLat = locationData.coords.latitude;
+      const geoLon = locationData.coords.longitude;
 
       // Llamar a onLocation con las coordenadas obtenidas
-      onLocation({ lat: geoLat, lon: geoLon })
-
-      setSearch('')
-    }
-
-    navigator.geolocation.getCurrentPosition(geoLocation)
-  }
+      onSearchChange({ lat: geoLat, lon: geoLon });
+    });
+  };
 
   return (
-        <div>
-            <div className='  flex justify-between px-2'>
-            <span className='flex flex-grow basis-0 text-3xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500'>The Weather App</span>
+    <div>
+      <div className="  flex justify-between px-2">
+        <span className="flex flex-grow basis-0 text-3xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+          The Weather App
+        </span>
 
-            <a
-            href="https://github.com/jotafuentes/weatherApp"
-            className='flex flex-grow justify-end '
-            >
-            <img src={githubLogo} alt="gitHub repository link" />
-            </a>
-            </div>
-            <div className='flex justify-center items-center gap-2 mt-4'>
-              <AsyncPaginate
-                onChange={handleOnChange}
-                className='p-1 px-2 rounded-xl w-2/5'
-                placeholder='Search for city'
-                debounceTimeout={600}
-                value={search}
-                loadOptions={loadOptions}
-                />
-
-              <svg
-              onClick={handleClick}
-              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-white cursor-pointer transition-all ease-in hover:scale-125">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
-
-            </div>
-
-        </div>
-  )
+        <a
+          href="https://github.com/jotafuentes/weatherApp"
+          className="flex flex-grow justify-end "
+        >
+          <img src={githubLogo} alt="gitHub repository link" />
+        </a>
+      </div>
+      <div className="flex justify-center items-center gap-2 mt-4">
+        <AsyncPaginate
+          onChange={handleOnChange}
+          className="p-1 px-2 rounded-xl w-2/5"
+          placeholder="Search for city"
+          debounceTimeout={600}
+          loadOptions={fetchCities}
+        />
+        <svg
+          onClick={handleClick}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6 text-white cursor-pointer transition-all ease-in hover:scale-125"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+          />
+        </svg>
+      </div>
+    </div>
+  );
 }
