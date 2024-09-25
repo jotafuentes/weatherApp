@@ -28,11 +28,9 @@ export function Forecast ({ dataForecast }) {
   const dataMax = dataForecast?.list.slice(0, sample).map((item, idx) => {
     return Math.round(item.main.temp_max)
   })
-  const dataMin = dataForecast?.list.slice(0, sample).map((item, idx) => {
-    return Math.round(item.main.temp_min)
-  })
 
   return (
+    <>
         <div className='min-h-[20rem]  relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  col-span-10  bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
           <div className='flex justify-center items-center h-full '>
 
@@ -42,7 +40,7 @@ export function Forecast ({ dataForecast }) {
                   labels,
                   datasets: [
                     {
-                      label: 'Max Temperature ºC',
+                      label: 'Temperature ºC',
                       data: dataMax,
                       fill: true,
                       borderColor: 'red',
@@ -51,18 +49,8 @@ export function Forecast ({ dataForecast }) {
                       pointRadius: 5,
                       pointHoverRadius: 10,
                       pointBackgroundColor: 'red'
-                    },
-                    {
-                      label: 'Min Temperature ºC',
-                      data: dataMin,
-                      fill: true,
-                      borderColor: 'blue',
-                      tension: 0.1,
-                      pointStyle: 'circle',
-                      pointRadius: 5,
-                      pointHoverRadius: 10,
-                      pointBackgroundColor: 'blue'
                     }
+
                   ]
 
                 }}
@@ -70,6 +58,8 @@ export function Forecast ({ dataForecast }) {
             />
           </div>
         </div>
+
+    </>
   )
 }
 

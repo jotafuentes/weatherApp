@@ -19,14 +19,15 @@ export function Search ({ onSearchChange }) {
 
   return (
     <div>
-      <div className="  flex justify-between px-2">
-        <span className="flex flex-grow basis-0 text-3xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+      <div className="  flex justify-between px-8">
+        <span className="flex flex-grow basis-0 text-3xl  font-sans font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
           The Weather App
         </span>
 
         <a
           href="https://github.com/jotafuentes/weatherApp"
           className="flex flex-grow justify-end "
+          target="_blank" rel="noreferrer"
         >
           <img src={githubLogo} alt="gitHub repository link" />
         </a>
