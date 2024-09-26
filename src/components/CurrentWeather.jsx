@@ -70,7 +70,7 @@ export function CurrentWeather ({ dataWeather, dataForecast }) {
               src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
               alt="icon-weather"
             />
-            <span className="">{Math.round(item.main.temp)} ºC</span>
+            <span className="text-lg">{Math.round(item.main.temp)}º</span>
           </div>
         ))}
       </section>
@@ -81,8 +81,7 @@ export function CurrentWeather ({ dataWeather, dataForecast }) {
 const formatDateTime = (timestamp) => {
   const date = new Date(timestamp * 1000)
   const options = {
-    weekday: 'short',
-    day: 'numeric',
+
     hour: 'numeric',
     minute: 'numeric'
   }

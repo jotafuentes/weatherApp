@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Line } from 'react-chartjs-2'
 import { Chart } from 'chart.js/auto'
 
-export function Forecast ({ dataForecast }) {
+export function Forecast ({ dataForecast, dataWeather }) {
   const [sample, setSample] = useState(15)
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export function Forecast ({ dataForecast }) {
 
   return (
     <>
-        <div className='min-h-[20rem]  relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  col-span-10  bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
+        <div className='sm:hidden md:block min-h-[20rem]  relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  col-span-10  bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
           <div className='flex justify-center items-center h-full '>
 
             <Line
@@ -58,6 +58,23 @@ export function Forecast ({ dataForecast }) {
             />
           </div>
         </div>
+        <div className='md:hidden min-h-[10rem] overflow-scroll  flex items-center relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10  col-span-10  bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% '>
+        {dataForecast.list.slice(0, 15).map((item, idx) => (
+          <div
+            key={idx}
+            className="flex flex-col items-center md:gap-3 p-4 text-white"
+          >
+            <h2 className=" text-xl">{reduceFormatDateTime(item.dt)}</h2>
+            <img
+              className="h-12 w-12"
+              src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+              alt="icon-weather"
+            />
+            <span className="text-xl">{Math.round(item.main.temp)}º</span>
+          </div>
+        ))}
+
+        </div>
 
     </>
   )
@@ -66,6 +83,13 @@ export function Forecast ({ dataForecast }) {
 const formatDateTime = (timestamp) => {
   const date = new Date(timestamp * 1000)
   const options = { weekday: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+  const formattedDateTime = new Intl.DateTimeFormat('es-ES', options).format(date)
+  return formattedDateTime
+}
+
+const reduceFormatDateTime = (timestamp) => {
+  const date = new Date(timestamp * 1000)
+  const options = { hour: 'numeric', minute: 'numeric' }
   const formattedDateTime = new Intl.DateTimeFormat('es-ES', options).format(date)
   return formattedDateTime
 }
