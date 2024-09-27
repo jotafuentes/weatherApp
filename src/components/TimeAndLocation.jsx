@@ -2,7 +2,7 @@
 
 export function TimeAndLocation ({ dataWeather }) {
   const timestamp = dataWeather.dt
-  const fechaHora = new Date(timestamp * 1000).toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false })
+  const fechaHora = new Date(timestamp * 1000).toLocaleString('es-ES', { day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: false })
 
   return (
         <div className=" flex flex-col justify-evenly items-center relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10 sm:col-span-3 col-span-10 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% ">

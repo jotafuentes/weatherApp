@@ -21,7 +21,6 @@ export function CurrentWeather ({ dataWeather, dataForecast }) {
     <div className="flex flex-col items-center relative rounded-xl backdrop-blur-xl border border-black/10 shadow-inner shadow-white/10 sm:col-span-7 col-span-10 bg-gradient-to-b from-indigo-950 from-50% to-blue-800 to-100% ">
       <div className="flex md:flex-row sm:flex-col md:justify-evenly sm:justify-center sm:items-center sm:pt-4">
         <section className="flex justify-around items-center px-2">
-          {/* }<span className="icon-[solar--cloud-rain-bold-duotone] text-6xl text-white"></span> */}
 
           <div className="flex flex-col gap-1 font-light">
             <div className="flex items-center gap-1 text-white">
