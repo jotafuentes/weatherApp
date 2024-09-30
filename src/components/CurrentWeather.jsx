@@ -57,11 +57,11 @@ export function CurrentWeather ({ dataWeather, dataForecast }) {
         </section>
       </div>
 
-      <section className="flex flex-col sm:flex-row justify-center gap-24 md:gap-12 m-12 md:m-8 text-white">
+      <section className="flex flex-col sm:flex-row justify-center gap-12 m-12 md:m-8 text-white">
         {dataForecast.list.slice(0, 3).map((item, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center md:gap-2 p-2 bg-indigo-950 border border-indigo-100 shadow-lg rounded-lg"
+            className="flex flex-col items-center md:gap-2 p-2 px-6 bg-indigo-950 border border-indigo-100 shadow-lg rounded-lg"
           >
             <h2 className=" text-xl">{formatDateTime(item.dt)}</h2>
             <img

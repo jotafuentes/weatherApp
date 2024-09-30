@@ -16,8 +16,8 @@ function App () {
 
   // NOTE: merge functions
   const handleOnSearchChange = (searchData) => {
-    const { lat, long } = searchData
-    fetchDataAndSetStateWithCoords(lat, long)
+    const { lat, lon } = searchData
+    fetchDataAndSetStateWithCoords(lat, lon)
   }
 
   return (

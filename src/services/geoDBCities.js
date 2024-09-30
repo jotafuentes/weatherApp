@@ -20,7 +20,7 @@ export const fetchCities = (inputValue) => {
       return {
         options: response.data.map((city) => {
           return {
-            value: { lat: city.latitude, long: city.longitude },
+            value: { lat: city.latitude, lon: city.longitude },
             label: `${city.name}, ${city.countryCode}`
           }
         })

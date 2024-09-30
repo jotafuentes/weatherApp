@@ -14,6 +14,8 @@ export function Search ({ onSearchChange }) {
 
       // Llamar a onLocation con las coordenadas obtenidas
       onSearchChange({ lat: geoLat, lon: geoLon })
+
+      console.log('geoLon:', geoLon)
     })
   }
 
