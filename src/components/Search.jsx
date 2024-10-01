@@ -43,6 +43,7 @@ export function Search ({ onSearchChange }) {
           loadOptions={fetchCities}
         />
         <svg
+          id='geoLocation'
           onClick={handleClick}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

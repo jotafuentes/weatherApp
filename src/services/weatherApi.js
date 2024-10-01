@@ -1,4 +1,4 @@
-function dataWeather (lat, lon, endpoint, onSearchChange) {
+function dataWeather (lat, lon, endpoint) {
   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
 
   return fetch(
