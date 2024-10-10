@@ -12,3 +12,5 @@ test('app get current location', async ({ page }) => {
   const cityName = await page.textContent('.text-3xl')
   expect(cityName).toBeTruthy() // Check that the city name is not empty
 })
+
+
